@@ -17,18 +17,12 @@
   </thead> -->
 
   <tbody>
-    <% cur = nil %>
     <% @events.each do |event| %>
-    <% if event.sdate <= DateTime.now %>
-      <% cur = event %>
-    <% else %>
-      <% if !cur.nil? %>
-      <tr class="cur">
-        <% cur = nil %>
+      <% if event == @current %>
+        <tr class="cur">
       <% else %>
         <tr>
       <% end %>
-    <% end %>
         <td><%= event.sdate.strftime("%H:%M") %></td>
         <td><%= event.etype %></td>
         <td><%= event.author %></td>

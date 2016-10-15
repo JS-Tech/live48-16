@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.recent
+    @current = Event.where("sdate <= ?", Time.now).order("sdate").last
   end
 
   # GET /events/1
