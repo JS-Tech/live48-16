@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<div class="title">
+<h1>Programme</h1>
+<p>www.48.eebulle.ch</p>
+</div>
+
+<table class="events">
+  <!-- <thead>
+    <tr>
+      <th>Sdate</th>
+      <th>Type</th>
+      <th>Author</th>
+      <th>Info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead> -->
+
+  <tbody>
+    <% cur = nil %>
+    <% @events.each do |event| %>
+    <% if event.sdate <= DateTime.now %>
+      <% cur = event %>
+    <% else %>
+      <% if !cur.nil? %>
+      <tr class="cur">
+        <% cur = nil %>
+      <% else %>
+        <tr>
+      <% end %>
+    <% end %>
+        <td><%= event.sdate.strftime("%H:%M") %></td>
+        <td><%= event.etype %></td>
+        <td><%= event.author %></td>
+        <td><%= event.info %></td>
+        <!-- <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>¨
+
+<script>
+window.setTimeout(function() {
+  location.reload();
+},60000);
+</script>
